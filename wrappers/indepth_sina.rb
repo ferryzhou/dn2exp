@@ -3,20 +3,22 @@
 require 'open-uri'
 require 'nokogiri'
 require 'date'
+require 'json'
 
 page_url = 'http://roll.tech.sina.com.cn/iframe_famous/index.shtml'
 
 doc = Nokogiri::HTML(open(page_url))
 
-doc.search('ul li').each do |item|
+nitems = doc.search('ul li').collect do |item|
+  nitem = Hash.new
   a = item.search('a').first
-  p a['href']
-  p a.content
+  nitem['link'] = a['href']
+  nitem['title'] = a.content
   span_segs = item.search('span').first.content.split(' ')
-  p span_segs.gsub(/[(《》杂志]/, '')
+  nitem['source'] = span_segs.first.gsub(/[(《》杂志]/, '')
   asegs = a['href'].split('/')
-  t = DateTime.parse(asegs[-2] + 'T' + span_segs.last)
-  p t
+  nitem['time'] = DateTime.parse(asegs[-2] + 'T' + span_segs.last)
+  nitem
 end
 
-
+puts JSON.pretty_generate(nitems)
