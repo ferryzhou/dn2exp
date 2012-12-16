@@ -20,7 +20,7 @@ extract source, sina weibo shared count, comment count
 
 in-depth:
 
-- http://tech.sina.com.cn/famous_media/
+- http://roll.tech.sina.com.cn/iframe_famous/index.shtml
 - http://tech.ifeng.com/magazine/
 - http://tech.163.com/special/000925CD/Cover.html
 - http://tech.cn.yahoo.com/shendu/
